@@ -30,10 +30,12 @@ def _pretty_tree_helper(root, curr_index=0):
     node_repr = str(root.key)
 
     new_root_width = gap_size = len(node_repr)
-    
+
     # Get the left and right sub-boxes, their widths, and root repr positions
-    l_box, l_box_width, l_root_start, l_root_end = _pretty_tree_helper(root.left, 2 * curr_index + 1)
-    r_box, r_box_width, r_root_start, r_root_end = _pretty_tree_helper(root.right, 2 * curr_index + 2)
+    l_box, l_box_width, l_root_start, l_root_end = _pretty_tree_helper(
+        root.left, 2 * curr_index + 1)
+    r_box, r_box_width, r_root_start, r_root_end = _pretty_tree_helper(
+        root.right, 2 * curr_index + 2)
 
     # Draw the branch connecting the current root to the left sub-box
     # Pad with whitespaces where necessary
@@ -73,7 +75,8 @@ def _pretty_tree_helper(root, curr_index=0):
 
     # Return the new box, its width and its root positions
     return new_box, len(new_box[0]), new_root_start, new_root_end
-    
+
+
 def pretty_tree(tree):
     lines = _pretty_tree_helper(tree.root, 0)[0]
     return '\n' + '\n'.join((line.rstrip() for line in lines))
